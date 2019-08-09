@@ -4,29 +4,27 @@
 
 # JavaScript Cookie [![Build Status](https://travis-ci.org/js-cookie/js-cookie.svg?branch=master)](https://travis-ci.org/js-cookie/js-cookie) [![Code Climate](https://codeclimate.com/github/js-cookie/js-cookie.svg)](https://codeclimate.com/github/js-cookie/js-cookie) [![jsDelivr Hits](https://data.jsdelivr.com/v1/package/npm/js-cookie/badge?style=rounded)](https://www.jsdelivr.com/package/npm/js-cookie)
 
-A simple, lightweight JavaScript API for handling cookies
+一个简单，轻量级的JavaScript API，用于处理cookie。
 
-* Works in [all](https://saucelabs.com/u/js-cookie) browsers
-* Accepts [any](#encoding) character
+* 适用于 [所有](https://saucelabs.com/u/js-cookie) 浏览器
+* 接受 [任何](#encoding) 字符
 * [Heavily](test) tested
-* No dependency
-* [Unobtrusive](#json) JSON support
-* Supports AMD/CommonJS
-* [RFC 6265](https://tools.ietf.org/html/rfc6265) compliant
+* 没有依赖
+* [非显式](#json) JSON 支持
+* 支持 AMD/CommonJS
+* 兼容 [RFC 6265](https://tools.ietf.org/html/rfc6265)
 * Useful [Wiki](https://github.com/js-cookie/js-cookie/wiki)
-* Enable [custom encoding/decoding](#converters)
-* **~900 bytes** gzipped!
+* 可用 [自定义编码/解码](#converters)
+* gzip压缩后仅 **~900 bytes**
 
-**If you're viewing this at https://github.com/js-cookie/js-cookie, you're reading the documentation for the master branch.
-[View documentation for the latest release.](https://github.com/js-cookie/js-cookie/tree/latest#readme)**
 
-## Build Status Matrix ([including active Pull Requests](https://github.com/js-cookie/js-cookie/issues/286))
+## 构建状态 ([including active Pull Requests](https://github.com/js-cookie/js-cookie/issues/286))
 
 [![Selenium Test Status](https://saucelabs.com/browser-matrix/js-cookie.svg)](https://saucelabs.com/u/js-cookie)
 
-## Installation
+## 安装
 
-### Direct download
+### 直接下载
 
 Download the script [here](https://github.com/js-cookie/js-cookie/blob/latest/src/js.cookie.js) and include it (unless you are packaging scripts somehow else):
 
@@ -163,9 +161,9 @@ Cookies.getJSON('name'); // => { foo: 'bar' }
 Cookies.getJSON(); // => { name: { foo: 'bar' } }
 ```
 
-*Note: To support IE6-7 ([and IE 8 compatibility mode](http://stackoverflow.com/questions/4715373/json-object-undefined-in-internet-explorer-8)) you need to include the JSON-js polyfill: https://github.com/douglascrockford/JSON-js*
+*注意: 为了支持 IE6-7 ([and IE 8 compatibility mode](http://stackoverflow.com/questions/4715373/json-object-undefined-in-internet-explorer-8)) 你需要包含 JSON-js polyfill: https://github.com/douglascrockford/JSON-js*
 
-## Encoding
+## 编码
 
 This project is [RFC 6265](http://tools.ietf.org/html/rfc6265#section-4.1.1) compliant. All special characters that are not allowed in the cookie-name or cookie-value are encoded with each one's UTF-8 Hex equivalent using [percent-encoding](http://en.wikipedia.org/wiki/Percent-encoding).  
 The only character in cookie-name or cookie-value that is allowed and still encoded is the percent `%` character, it is escaped in order to interpret percent input as literal.  
@@ -173,19 +171,20 @@ Please note that the default encoding/decoding strategy is meant to be interoper
 
 *Note: According to [RFC 6265](https://tools.ietf.org/html/rfc6265#section-6.1), your cookies may get deleted if they are too big or there are too many cookies in the same domain, [more details here](https://github.com/js-cookie/js-cookie/wiki/Frequently-Asked-Questions#why-are-my-cookies-being-deleted).*
 
-## Cookie Attributes
+## Cookie 属性
 
-Cookie attributes defaults can be set globally by setting properties of the `Cookies.defaults` object or individually for each call to `Cookies.set(...)` by passing a plain object in the last argument. Per-call attributes override the default attributes.
+
+Cookie属性默认值可以通过设置`Cookies.defaults`对象的属性来全局设置，也可以通过在最后一个参数中传递普通对象来单独地每次调用`Cookies.set（...）`。 每次调用属性会覆盖默认属性。
 
 ### expires
 
-Define when the cookie will be removed. Value can be a [`Number`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number) which will be interpreted as days from time of creation or a [`Date`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date) instance. If omitted, the cookie becomes a session cookie.
+定义cookie何时被删除。值可以是 [`Number`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)，它将被解释为创建时的天数，或是 [`Date`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date) 实例. 如果省略expires参数，该cookie将成为会话cookie。
 
-To create a cookie that expires in less than a day, you can check the [FAQ on the Wiki](https://github.com/js-cookie/js-cookie/wiki/Frequently-Asked-Questions#expire-cookies-in-less-than-a-day).
+要创建一个在不到一天的时间内到期的cookie，你可以查看 [FAQ on the Wiki](https://github.com/js-cookie/js-cookie/wiki/Frequently-Asked-Questions#expire-cookies-in-less-than-a-day).
 
-**Default:** Cookie is removed when the user closes the browser.
+**默认:** Cookie 将在浏览器关闭时被删除。
 
-**Examples:**
+**示例:**
 
 ```javascript
 Cookies.set('name', 'value', { expires: 365 });
@@ -195,11 +194,12 @@ Cookies.remove('name');
 
 ### path
 
-A [`String`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String) indicating the path where the cookie is visible.
+A [`String`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String) 表明cookie的可见路径。
 
-**Default:** `/`
 
-**Examples:**
+**默认:** `/`
+
+**示例:**
 
 ```javascript
 Cookies.set('name', 'value', { path: '' });
@@ -207,15 +207,15 @@ Cookies.get('name'); // => 'value'
 Cookies.remove('name', { path: '' });
 ```
 
-**Note regarding Internet Explorer:**
+**关于Internet Explorer的注意事项：**
 
-> Due to an obscure bug in the underlying WinINET InternetGetCookie implementation, IE’s document.cookie will not return a cookie if it was set with a path attribute containing a filename.
+> 由于底层WinINET InternetGetCookie的实现中存在一个模糊的错误，如果path属性包含文件名，IE的document.cookie将不会返回cookie。
 
-(From [Internet Explorer Cookie Internals (FAQ)](http://blogs.msdn.com/b/ieinternals/archive/2009/08/20/wininet-ie-cookie-internals-faq.aspx))
+(来自 [Internet Explorer Cookie Internals (FAQ)](http://blogs.msdn.com/b/ieinternals/archive/2009/08/20/wininet-ie-cookie-internals-faq.aspx))
 
-This means one cannot set a path using `window.location.pathname` in case such pathname contains a filename like so: `/check.html` (or at least, such cookie cannot be read correctly).
+这意味着无法使用`window.location.pathname`设置路径，以防这样的路径名包含如下文件名：`/check.html`（这样的cookie无法正确读取）。
 
-In fact, you should never allow untrusted input to set the cookie attributes or you might be exposed to a [XSS attack](https://github.com/js-cookie/js-cookie/issues/396).
+实际上，你永远不应允许不受信任的输入来设置cookie属性，否则您可能会受到[XSS 攻击](https://github.com/js-cookie/js-cookie/issues/396).
 
 ### domain
 
